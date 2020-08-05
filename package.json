@@ -1,0 +1,17 @@
+{
+  "name": "notebooks-api",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/aibr24/NotebooksAPI.git",
+  "author": "aibr24 <aliibrahim4793@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.3.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.4"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  }
+}
