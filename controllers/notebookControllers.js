@@ -20,3 +20,13 @@ exports.notebookList = async (req, res, next) => {
     console.log("NOTEBOOK List ---->", error);
   }
 };
+
+exports.noteCreate = async (req, res, next) => {
+  try {
+    req.body.notebookId = req.notebook.id;
+    const newNote = await Note.create(req.body);
+    res.status(201).json(newNote);
+  } catch (error) {
+    console.log("NOTE CREATE ---->", error);
+  }
+};
