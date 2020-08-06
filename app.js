@@ -13,10 +13,12 @@ const run = async () => {
   }
 
   const notebookRoutes = require("./routes/notebooks");
+  const noteRoutes = require("./routes/notes");
 
   app.use(cors());
   app.use(bodyParser.json());
   app.use("/notebooks", notebookRoutes);
+  app.use("/notes", noteRoutes);
   app.listen(8000);
 };
 

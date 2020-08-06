@@ -1,4 +1,13 @@
-const { Notebook } = require("../db/models");
+const { Notebook, Note } = require("../db/models");
+
+exports.fetchNotebook = async (notebookId) => {
+  try {
+    const notebook = await Notebook.findByPk(notebookId);
+    return notebook;
+  } catch (error) {
+    console.log("FETCH NOTEBOOK ---->", error);
+  }
+};
 
 exports.notebookCreate = async (req, res, next) => {
   try {
@@ -13,6 +22,11 @@ exports.notebookList = async (req, res, next) => {
   try {
     const notebooks = await Notebook.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
+      include: {
+        model: Note,
+        as: "notes",
+        attributes: ["id"],
+      },
     });
     res.json(notebooks);
     console.log(notebooks);
@@ -22,6 +36,7 @@ exports.notebookList = async (req, res, next) => {
 };
 
 exports.noteCreate = async (req, res, next) => {
+  console.log(req);
   try {
     req.body.notebookId = req.notebook.id;
     const newNote = await Note.create(req.body);
